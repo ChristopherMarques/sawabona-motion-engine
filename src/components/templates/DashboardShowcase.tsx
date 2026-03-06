@@ -169,15 +169,15 @@ const EndingScene: React.FC<{ text: string }> = ({ text }) => {
     return (
         <AbsoluteFill
             className="bg-[#050508] flex flex-col items-center justify-center z-[100]"
-            style={{ opacity: useFadeIn({ durationInFrames: 45 }) }}
+            style={{ opacity: useFadeIn({ durationInFrames: 60 }) }}
         >
             <div className="w-56 h-56 rounded-[3rem] bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 flex items-center justify-center shadow-[0_0_150px_rgba(99,102,241,0.6)] mb-12"
-                style={{ transform: useSlideIn({ durationInFrames: 60, direction: "down", distance: 100 }) + " " + useZoom({ durationInFrames: 65, startScale: 0.5, endScale: 1 }) }}>
+                style={{ transform: useSlideIn({ durationInFrames: 90, direction: "down", distance: 40 }) + " " + useZoom({ durationInFrames: 100, startScale: 0.8, endScale: 1 }) }}>
                 <span className="text-[120px] font-extrabold text-white tracking-widest translate-x-4">S</span>
             </div>
             <h2 className="text-[140px] font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-400 to-indigo-600 tracking-tighter px-10"
-                style={{ opacity: useFadeIn({ durationInFrames: 45, delayInFrames: 30 }), transform: useSlideIn({ durationInFrames: 60, delayInFrames: 30, direction: "up", distance: 100 }) }}>
-                {useTypewriter({ text, durationInFrames: 50, delayInFrames: 30 })}
+                style={{ opacity: useFadeIn({ durationInFrames: 60, delayInFrames: 25 }), transform: useSlideIn({ durationInFrames: 90, delayInFrames: 25, direction: "up", distance: 40 }) }}>
+                {useTypewriter({ text, durationInFrames: 80, delayInFrames: 25 })}
             </h2>
         </AbsoluteFill>
     );
