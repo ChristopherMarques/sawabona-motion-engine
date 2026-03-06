@@ -1,19 +1,17 @@
 import React, { useMemo } from "react";
-import { Composition } from "remotion";
 import { VideoConfigSchema } from "../schemas/video.schema";
 import { EngineComposition, ComponentRegistry } from "./Composition";
 
 export interface MotionEngineProps {
     config: unknown; // Takes raw input to validate internally against zod
     componentRegistry?: ComponentRegistry;
-    compositionId?: string;
 }
 
 /**
  * Root level exported wrapper for registering and wrapping the Remotion App Pipeline.
  * Useful when integrating into other apps.
  */
-export const MotionEngine: React.FC<MotionEngineProps> = ({ config, componentRegistry, compositionId = "MotionEngineComposition" }) => {
+export const MotionEngine: React.FC<MotionEngineProps> = ({ config, componentRegistry }) => {
     // 1. Zod Validation
     const validatedConfig = useMemo(() => {
         try {
@@ -32,27 +30,11 @@ export const MotionEngine: React.FC<MotionEngineProps> = ({ config, componentReg
         )
     }
 
-    // 2. Parse total duration
-    const durationInFrames = useMemo(() => {
-        return validatedConfig.scenes.reduce((acc, scene) => acc + scene.durationInFrames, 0);
-    }, [validatedConfig.scenes]);
-
-    // 3. Render Composition Context
+    // 2. Render Composition Context
     // In a real application, if this is called from an App router/Browser, we only render Player.
-    // We leave it simply exposing the engine Composition logic here which can be mounted by root 
-    // or a preview player externally.
+    // By returning EngineComposition, this component can be directly embedded in <Player /> 
+    // or wrapped in a <Composition /> for the Remotion CLI.
     return (
-        <Composition
-            id={compositionId}
-            component={EngineComposition as React.FC<any>}
-            durationInFrames={durationInFrames}
-            fps={validatedConfig.fps}
-            width={validatedConfig.width}
-            height={validatedConfig.height}
-            defaultProps={{
-                config: validatedConfig,
-                registry: componentRegistry,
-            }}
-        />
+        <EngineComposition config={validatedConfig} registry={componentRegistry} />
     );
 };
