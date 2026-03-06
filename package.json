@@ -1,0 +1,58 @@
+{
+  "name": "@sawabona/motion-engine",
+  "version": "1.0.0",
+  "description": "Remotion-based engine for rendering dynamic videos from React, Tailwind, and Shadcn UI.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "preview": "remotion studio src/core/index.tsx",
+    "render": "remotion render src/core/index.tsx MotionEngineComposition out/video.mp4",
+    "release": "npm run build && npm publish --access public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "clsx": "^2.1.0",
+    "framer-motion": "11.18.2",
+    "lucide-react": "^0.473.0",
+    "remotion": "4.x",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@remotion/cli": "4.0.434",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.434",
+    "tailwindcss": "3.4.17",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
+  },
+  "author": "Sawabona",
+  "license": "MIT"
+}
