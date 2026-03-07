@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, Sequence } from "remotion";
 import { type VideoConfig } from "../schemas/video.schema";
-import { AnimateWrapper } from "../components/organisms/AnimateWrapper";
+
 import { cn } from "../lib/utils";
 import "../styles/globals.css";
 
@@ -16,28 +16,18 @@ export interface CompositionProps {
     registry?: ComponentRegistry;
 }
 
+import { SceneRenderer } from "../components/organisms/SceneRenderer";
+
 const SceneContentRenderer: React.FC<{ scene: any, registry?: ComponentRegistry }> = ({ scene, registry }) => {
-    let ComponentToRender: React.ReactNode = null;
+    let ComponentToRender: React.ElementType | null = null;
 
     if (scene.componentName && registry && registry[scene.componentName]) {
         const Comp = registry[scene.componentName];
-        ComponentToRender = <Comp {...(scene.props || {})} />;
-    } else {
-        ComponentToRender = (
-            <div className="flex w-full h-full items-center justify-center bg-muted text-muted-foreground p-8">
-                <h1 className="text-4xl font-bold">Raw Text Fallback: {scene.id}</h1>
-            </div>
-        );
+        ComponentToRender = Comp; // Just pass the raw type, SceneRenderer handles instantiation
     }
 
     return (
-        <AnimateWrapper
-            animationType={scene.animation?.type}
-            durationInFrames={scene.animation?.durationInFrames}
-            delayInFrames={scene.animation?.delayInFrames}
-        >
-            {ComponentToRender}
-        </AnimateWrapper>
+        <SceneRenderer scene={scene} ResolvedComponent={ComponentToRender as any} />
     );
 };
 

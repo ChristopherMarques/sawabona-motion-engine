@@ -1,6 +1,6 @@
 {
   "name": "@sawabona/motion-engine",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Remotion-based engine for rendering dynamic videos from React, Tailwind, and Shadcn UI.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -27,14 +27,14 @@
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "remotion": "4.0.434"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
     "clsx": "^2.1.0",
     "framer-motion": "11.18.2",
     "lucide-react": "^0.473.0",
-    "remotion": "4.x",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"

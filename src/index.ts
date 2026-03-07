@@ -19,3 +19,13 @@ export { useFadeIn, useFadeOut, useSlideIn, useRotate, useMove, useTypewriter, u
 
 // Tailwind plugin configuration and utils
 export { cn } from "./lib/utils";
+
+// V3 Exports
+export { usePhysics } from "./hooks/usePhysics";
+export { useVFX } from "./hooks/useVFX";
+export { useAudioReact } from "./hooks/useAudioReact";
+
+export { AudioVisualizerProvider, AudioVisualizerContext } from "./components/organisms/AudioVisualizerProvider";
+export { DepthLayer } from "./components/molecules/DepthLayer";
+export { MorphRegistryProvider, MorphContext } from "./components/organisms/MorphRegistry";
+export { ParticlesOverlay } from "./components/atoms/motion/ParticlesOverlay";

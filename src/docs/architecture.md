@@ -2,7 +2,7 @@
 
 O pacote `@sawabona/motion-engine` é um motor de renderização programática de vídeos baseado em React e **Remotion**. Ele foi desenhado para expor um componente amigável e agnóstico de front-end que recebe uma configuração via objeto/JSON para gerar vídeos dinâmicos de alta qualidade utilizando estilização com **Tailwind CSS**.
 
-## Design do Sistema
+## Design do Sistema (V2)
 
 O projeto é arquitetado seguindo os princípios de **Atomic Design** em conjunto com as melhores práticas recomendadas para o ecossistema do **Remotion** e **Shadcn UI**. 
 
@@ -12,18 +12,22 @@ A estrutura base possui a seguinte hierarquia organizacional:
 src/
 ├── components/
 │   ├── atoms/
-│   │   └── ui/             # Componentes Shadcn UI puros e primitivos Tailwind
-│   ├── molecules/          # Elementos de UI combinados para uso interno nas cenas
-│   ├── organisms/          # Componentes altamente responsáveis como SceneRenderer e AnimateWrapper
-│   └── templates/          # Layouts base do vídeo master (Background, Título, Transições Glovais)
+│   │   ├── ui/             # Componentes Shadcn UI puros e primitivos Tailwind
+│   │   └── motion/         # Elementos de Overlay agnósticos (VirtualCursor, RippleOverlay)
+│   ├── molecules/          # Elementos de UI / Wrappers (AnimateWrapper, AudioTrack)
+│   ├── organisms/          # Componentes altamente responsáveis como SceneRenderer e containers de Câmera
+│   └── templates/          # Layouts base do vídeo master (Background, Título, Transições Globais)
 ├── core/
 │   ├── Composition.tsx     # O "Player" central (ponto de entrada da Composition do Remotion)
 │   └── MotionEngine.tsx    # O componente principal Wrapper que será consumido pela aplicação mãe
-├── hooks/
-│   └── use*.ts             # Custom hooks do Remotion para orquestração de frames (Fade, Slide, Ease)
-└── schemas/
-    └── video.schema.ts     # Schema de Validação de Configurações (Zod) da API
+├── hooks/                  # Abstrações matemáticas (useCamera, useInteraction, useFadeIn)
+└── schemas/                # Schema de Validação de Configurações (Zod) da API
 ```
+
+### Novas Capacidades da V2
+1. **Virtual Camera:** Transforma o `SceneRenderer` em um espaço 2D navegável via Zoom e Pan.
+2. **Interaction Emulator:** Hooks como `useInteraction` criam overlays de cursos de mouse virtuais e ripples que interagem de forma agnóstica com os componentes da UI.
+3. **Audio Sync:** Infraestrutura de `<AudioTrack>` nativa conectada ao ciclo de cena para suporte a Voiceovers e trilhas sonoras.
 
 ## Por que Remotion?
 

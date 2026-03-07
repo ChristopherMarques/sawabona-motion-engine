@@ -33,14 +33,15 @@ Motion Engine uses `npm` as its primary package manager.
    ```
    Open `http://localhost:3000/playground` to see updates applying live.
 
-## 🧩 Implementing new Features / Animations
+## 🧩 Implementing new Features / Animations (V2 Plugin System)
 
-If you're suggesting a new animation hook or schema change:
+If you're suggesting a new animation hook, UI component overlay, or Custom Easing:
 
-1. Update the `AnimationTypeSchema` in `src/schemas/video.schema.ts`.
-2. Add your custom math/interpolation hook logic inside `src/hooks/animations.ts`.
-3. Integrate the hook invocation and its CSS `style` interpretation inside the `src/components/organisms/AnimateWrapper.tsx`.
-4. Ensure `npm run build` succeeds cleanly and TypeScript types have no errors.
+1. **Schemas:** Update the `AnimationTypeSchema` in `src/schemas/video.schema.ts`.
+2. **Hooks:** Add your custom math/interpolation logic inside `src/hooks/useCamera.ts`, `useInteraction.ts`, or generic `animations.ts`.
+3. **Core Wrappers:** Integrate the hook invocation and its CSS `style` interpretation inside the `src/components/molecules/AnimateWrapper.tsx`.
+4. **Organisms:** If your visual addition requires an absolute overlay (like `RippleOverlay.tsx`), make sure to register it within `src/components/organisms/SceneRenderer.tsx`.
+5. **Validation:** Ensure `npm run build` succeeds cleanly and TypeScript types have no errors.
 
 ## 📝 Pull Request Process
 
